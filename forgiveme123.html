@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forgive Me 💕</title>
+<style>
+    body {
+        background: linear-gradient(to bottom, #ffd6e8, #ffe0f7);
+        font-family: 'Comic Sans MS', cursive;
+        text-align: center;
+        height: 100vh;
+        overflow: hidden;
+        margin: 0;
+        position: relative;
+    }
+    h1 {
+        color: #d1006b;
+        margin-top: 10vh;
+        font-size: 6vw;
+        text-shadow: 1px 1px 5px #fff;
+    }
+    #message {
+        color: #ff3399;
+        font-size: 4vw;
+        margin-top: 2vh;
+        min-height: 6vw;
+        text-shadow: 1px 1px 3px #fff;
+    }
+    button {
+        padding: 15px 30px;
+        font-size: 4vw;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: all 0.3s;
+        font-weight: bold;
+        position: relative;
+        box-shadow: 0 5px 15px rgba(255,0,128,0.4);
+    }
+    #yes {
+        background: linear-gradient(to right, #ff8ce4, #ff4fc1);
+        color: white;
+        margin-right: 5vw;
+    }
+    #yes:hover {
+        transform: scale(1.1);
+    }
+    #no {
+        background: linear-gradient(to right, #ffb6c1, #ff69b4);
+        color: #8b004f;
+    }
+    #no:hover {
+        transform: scale(1.1);
+    }
+    .decoration {
+        position: absolute;
+        animation: float 5s linear infinite;
+        pointer-events: none;
+    }
+    .heart {
+        font-size: 5vw;
+    }
+    .butterfly {
+        font-size: 6vw;
+        animation: fly 6s linear infinite;
+    }
+    @keyframes float {
+        0% { transform: translateY(0) rotate(0deg); opacity: 1;}
+        100% { transform: translateY(-120vh) rotate(360deg); opacity: 0;}
+    }
+    @keyframes fly {
+        0% { transform: translate(0,0) rotate(0deg); opacity: 1; }
+        25% { transform: translate(50px,-100px) rotate(15deg); }
+        50% { transform: translate(-50px,-200px) rotate(-15deg); }
+        75% { transform: translate(50px,-300px) rotate(15deg); }
+        100% { transform: translate(0,-400px) rotate(0deg); opacity: 0; }
+    }
+</style>
+</head>
+<body>
+
+<h1>Wallah ma b2dar ekhsarik 💔<br>Tseme7ni ya rou7i 💕</h1>
+<div id="message"></div>
+
+<button id="yes">Yes 💖</button>
+<button id="no">No 😭</button>
+
+<script>
+    const yesBtn = document.getElementById('yes');
+    const noBtn = document.getElementById('no');
+    const message = document.getElementById('message');
+    const body = document.body;
+
+    // YES button click
+    yesBtn.onclick = () => {
+        document.querySelector('h1').innerHTML = "Yaaay 😭💞 Thank you! <br>I promise I'll be the best 💕";
+        message.innerHTML = "";
+        yesBtn.style.display = "none";
+        noBtn.style.display = "none";
+    };
+
+    // NO button runs away + playful message
+    function moveButton() {
+        const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+        const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 50) + 50;
+        noBtn.style.position = 'absolute';
+        noBtn.style.left = x + 'px';
+        noBtn.style.top = y + 'px';
+
+        const msgs = [
+            "Awww, don't want to forgive me? 😢",
+            "Are you suuure? 💔",
+            "Really really sure? 💌",
+            "Tseme7ni wallah 😭💕",
+            "Hmm… still no? 🥺"
+        ];
+        message.innerHTML = msgs[Math.floor(Math.random() * msgs.length)];
+    }
+
+    noBtn.addEventListener('mouseenter', moveButton);
+    noBtn.addEventListener('touchstart', moveButton);
+
+    // Floating hearts and butterflies
+    function createDecoration() {
+        const deco = document.createElement('div');
+        deco.className = 'decoration';
+        deco.style.left = Math.random() * window.innerWidth + 'px';
+        if(Math.random() > 0.5){
+            deco.classList.add('heart');
+            deco.innerText = '💖';
+        } else {
+            deco.classList.add('butterfly');
+            deco.innerText = '🦋';
+        }
+        body.appendChild(deco);
+        setTimeout(() => deco.remove(), 6000);
+    }
+
+    setInterval(createDecoration, 300);
+
+</script>
+
+</body>
+</html>
